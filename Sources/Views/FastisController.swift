@@ -84,7 +84,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         return barButtonItem
     }()
 
-    private lazy var calendarView: JTACMonthView = {
+    public private(set) lazy var calendarView: JTACMonthView = {
         let monthView = JTACMonthView()
         monthView.translatesAutoresizingMaskIntoConstraints = false
         monthView.backgroundColor = self.appearance.backgroundColor
@@ -101,13 +101,13 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         return monthView
     }()
 
-    private lazy var weekView: WeekView = {
+    public private(set) lazy var weekView: WeekView = {
         let view = WeekView(calendar: self.config.calendar, config: self.config.weekView)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    private lazy var currentValueView: CurrentValueView<Value> = {
+    public private(set) lazy var currentValueView: CurrentValueView<Value> = {
         let view = CurrentValueView<Value>(
             config: self.config.currentValueView,
             calendar: self.config.calendar
@@ -158,7 +158,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     private var isDone = false
     private var privateCloseOnSelectionImmediately = false
 
-    private var value: Value? {
+    public private(set) value: Value? {
         didSet {
             self.updateSelectedShortcut()
             self.currentValueView.currentValue = self.value
@@ -426,12 +426,12 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     }
 
     @objc
-    private func cancel() {
+    public func cancel() {
         self.dismiss(animated: true)
     }
 
     @objc
-    private func done() {
+    public func done() {
         self.isDone = true
         self.dismiss(animated: true)
     }
@@ -520,7 +520,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         }
     }
 
-    private func clear() {
+    public func clear() {
         self.value = nil
         self.viewConfigs.removeAll()
         self.calendarView.deselectAllDates()
