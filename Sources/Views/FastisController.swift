@@ -158,7 +158,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     private var isDone = false
     private var privateCloseOnSelectionImmediately = false
 
-    public private(set) value: Value? {
+    public private(set) var value: Value? {
         didSet {
             self.updateSelectedShortcut()
             self.currentValueView.currentValue = self.value
